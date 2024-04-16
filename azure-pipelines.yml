@@ -1,5 +1,15 @@
 # Maven
-- task: JFrogMaven@1
+- task: JFrogGenericArtifacts@1
+  inputs:
+    command: 
+    specSource: 'taskConfiguration'
+    failNoOp: true
+- task:- task: JFrogBuildScan@1
+  inputs:
+    buildName: '$(Build.DefinitionName)'
+    buildNumber: '$(Build.BuildNumber)'
+    allowFailBuild: true
+    vuln: false
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'install'
